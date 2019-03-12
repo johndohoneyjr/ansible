@@ -6,16 +6,9 @@
   become: yes
   tasks:
 
-  - name: print out the hostname of target
-    command: hostname
-  
-  - name: Install apache packages 
-    yum:
-      name: httpd
-      state: present
-
-  - name: ensure httpd is running
+  - name: ensure nginx is at the latest version
+    apt: name=nginx state=latest
+  - name: start nginx
     service:
-      name: httpd 
-      state: started
-
+        name: nginx
+        state: started
